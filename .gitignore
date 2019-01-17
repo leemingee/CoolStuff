@@ -1,0 +1,5 @@
+.idea/*
+data/*
+*.sqlite
+*.DS_Store
+Reference/*
