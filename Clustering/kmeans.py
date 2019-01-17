@@ -95,3 +95,5 @@ class KMeans:
 '''
 
 # TODO add parallel module and give it a try
+
+# TODO minibatch kmeans to be implemented
