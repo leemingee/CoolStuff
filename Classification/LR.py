@@ -10,7 +10,7 @@ Contact: ming.li2@columbia.edu
 import numpy as np
 
 class LR:
-
+    # https://medium.com/@martinpella/logistic-regression-from-scratch-in-python-124c5636b8ac
     def __init__(self, lr=0.01, num_iter=100000, fit_intercept=True, verbose=False):
         self.lr = lr
         self.num_iter = num_iter
