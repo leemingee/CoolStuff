@@ -35,7 +35,7 @@ def cal_infor_gain(col_x, col_y):
         x_i_proportion = counts/len(col_x)
         H_y_x += x_i_proportion * entropy(subset_x_i)
     infor_gain = H_y - H_y_x
-    return infor_gain
+    return infor_gain, nums
 
 # C4.5
 def cal_infor_gain_ratio(col_x, col_y):
@@ -52,8 +52,9 @@ def cal_infor_gain_ratio(col_x, col_y):
     counts_proportion = np.array(counts) / sum(counts)
     for proportion in counts_proportion:
         IV_x += -1 * proportion * log2(proportion)
-    infor_gain_ratio = cal_infor_gain(col_x, col_y) / IV_x
-    return infor_gain_ratio
+        infor_gain, _ = cal_infor_gain(col_x, col_y)
+    infor_gain_ratio = infor_gain / IV_x
+    return infor_gain_ratio, nums
 
 
 # CART
@@ -75,7 +76,7 @@ def cal_Gini_Index(col_x, col_y):
     gini_index = 0
     for x_i in nums:
         gini_index += counts_proportion * cal_Gini(col_y[col_x == x_i])
-    return gini_index
+    return gini_index, nums
 
 
     

@@ -66,9 +66,44 @@ class DecisionTree:
             
     
     def generate(self, x, y, type, detailed):
-        pass
+        '''
+        generate the nodes for the ID3, C4.5
+        :param x:
+        :param y:
+        :param type:
+        :param detailed:
+        :return:
+        '''
+        # if empty
+        if x.size == 0:
+            return
+        # if all the y_labels in this sub-group are the same
+        if len(np.unique(y, return_counts=False)) == 1:
+            root.addChild("leaf", y[0])
+            return
+        # if all the features are the same, use the popular one
+        if np.all(x == x[0, :]) or root.depth == 0:
+            nums, counts = np.unique(y, return_counts=True)
+            count = dict(zip(nums, counts))
+            root.addChild("leaf", counts[True] > counts[False])
+            return
+        
+        max_gain = 0
+        max_feature = -1
+        max_feature_vals = True
+        
+        #TODO refer to this code to complete
+        # https: // github.com / zhuzilin / NP_ML / blob / master / np_ml / decision_tree / decision_tree.py
     
+
     def CARTGenerator(self, x, y, detailed):
+        '''
+        generate the nodes for CART
+        :param x:
+        :param y:
+        :param detailed:
+        :return:
+        '''
         pass
     
     def predict(self, x):
