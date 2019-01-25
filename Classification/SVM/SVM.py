@@ -5,6 +5,9 @@ Feature: SVM
 
 Description: SVM using SMO algorithm
 
+Reference: http://ecomunsing.com/build-your-own-support-vector-machine
+https://maviccprp.github.io/a-support-vector-machine-in-just-a-few-lines-of-python-code/
+
 Contact: ming.li2@columbia.edu
 '''
 
