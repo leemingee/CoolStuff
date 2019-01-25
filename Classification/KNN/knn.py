@@ -29,5 +29,12 @@ class KNN:
     
     def predict(self, X_test, X_train, y_train):
         y_pred = np.zeros(X_test.shape[0])
-        for idx, elem in enumerate(X_test):
-            
+        for idx, test_elem in enumerate(X_test):
+            # get the distance pair between test_elem and train_elem and sort them, get the idx of closet k train_elem
+            # TODO this distance_pairs can be stored using tree based algorithms
+            # TODO this 
+            distance_pairs = [euclidean_distance(test_elem, train_elem) for train_elem in X_train]
+            first_k_idx = np.argsort(distance_pairs)[: self.k]
+            k_neighbor_labels = y_train[first_k_idx]
+            y_pred[idx] = self.__vote__(neighbor_labels=k_neighbor_labels)
+        return y_pred
