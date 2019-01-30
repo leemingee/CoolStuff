@@ -7,3 +7,9 @@ Description: random forest based on the decision tree
 
 Contact: ming.li2@columbia.edu
 '''
+
+import numpy as np
+from collections import Counter
+from decision_tree import DecisionTree
+import csv
+
