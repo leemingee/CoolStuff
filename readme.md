@@ -2,7 +2,7 @@ Where I implement the ML from scratch using python.
 
 I expect to implement the simpler and reduced version of the algorithms in a agile update iterations.
 
-Start from 01/17/19, mainly for preparation for the interview at XXXX.
+Start from 01/17/19, mainly for preparation for the interview at XXXX at 1/30/2019
 
 
 ## Directory<a name="directory"></a>
@@ -33,3 +33,11 @@ Start from 01/17/19, mainly for preparation for the interview at XXXX.
 ## Algorithm List<a name="algorithm-list"></a>
 ### Classify<a name="classify"></a>
 - Perceptron
+
+
+TODO @ 01/30/2019
+--
+- RF
+- adaboost
+- PCA
+- some utils function like split, cv
