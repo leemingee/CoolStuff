@@ -10,6 +10,7 @@ Contact: ming.li2@columbia.edu
 
 import numpy as np
 import scipy
+from numpy import linalg as LA
 
 class KMeans:
 
@@ -45,13 +46,14 @@ class KMeans:
         :param detailed: boo for print the things out or not
         :return:
         '''
-        if not D isinstance(np.ndarray):
-            D = np.ndarray(D)
+        if not isinstance(D, np.ndarray):
+            D = np.array(D)
         # init the centers randomly
         center_indexes = np.random.randint(D.shape[0], size=self.k)
         self.centers = D[center_indexes]
         # loop...util...
         change_flag = True
+        label = None
         while change_flag:
             change_flag = False
             '''calculate the distance'''
@@ -64,11 +66,12 @@ class KMeans:
                 new_center = D[label == i].mean()
                 self.centers[i] = new_center
                 '''change_boo judgement'''
-                if np.linalg.norm(new_center - self.centers[i]) > self.eps:
+                # np.linalg.norm() calculate the
+                if LA.norm(new_center - self.centers[i]) > self.eps:
                     change_flag = True
                 if detailed:
                     '''if print out the centers details'''
-                    print('centers:', self.centers, 'changed:' change_flag)
+                    print('centers:', self.centers, 'changed:', change_flag)
         '''when jump out of the loop, print'''
         return label
 
