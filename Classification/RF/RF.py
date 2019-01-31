@@ -6,6 +6,18 @@ Feature: Random forest
 Description: random forest based on the decision tree
 
 Contact: ming.li2@columbia.edu
+
+Note:
+here we use a matrix to store the prediction result for every pair of
+tree and data point, we store them in the predicted_matrix
+predicted_matrix, each row is each data point, each column is each tree prediction for all data points
+
+
+predicted_matrix[:, i]
+    get access for each column
+for each_row in predicted_matrix
+    get access for each row
+
 '''
 
 import numpy as np
@@ -91,6 +103,13 @@ class RandomForest:
         predict based on the fitted trees, using the X_new
         :param X_new: X_new
         :return: predicted class
+        
+        Note: here we use a matrix to store the prediction result for every pair of
+        tree and data point, we store them in the predicted_matrix
+        predicted_matrix, each row is each data point, each column is each tree prediction for all data points
+        
+        predicted_matrix[:, i] get access for each column
+        for each_row in predicted_matrix get access for each row
         '''
         # assert X_new.shape[1] == X.shape[1]
         predicted_matrix = np.zeros(shape=(X_new.shape[0], self.n_estimators))
@@ -140,11 +159,15 @@ def predict_demo(X_new, n_estimators):
     for i, tree in enumerate(range(n_estimators)):
         prediction = np.random.randint(i+1, size=X_new.shape[0])
         predicted_matrix[:, i] = prediction
+        # print(i, predicted_matrix[:, i])
 
     y_pred = []
     for predicted_sample_result in predicted_matrix:
-        y_pred.append(np.bincount(predicted_sample_result.astype('int')).argmax())
-    return predicted_matrix
+        # for each_row in predicted_matrix
+        # y_pred.append(np.bincount(predicted_sample_result.astype('int')).argmax())
+        predicted_for_sample_bincount = np.bincount(predicted_sample_result.astype(np.int))
+        y_pred.append(np.argmax(predicted_for_sample_bincount))
+    return predicted_matrix, y_pred
 
 def main():
     #test = Test()

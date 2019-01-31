@@ -4,17 +4,19 @@ Created by Ming Li at 1/17/19
 Feature: logistic regression
 
 Description: logistics regression
+the code is from reference link
+https://medium.com/@martinpella/logistic-regression-from-scratch-in-python-124c5636b8ac
 
 Contact: ming.li2@columbia.edu
 '''
 import numpy as np
 
 class LR:
-    # https://medium.com/@martinpella/logistic-regression-from-scratch-in-python-124c5636b8ac
-    def __init__(self, lr=0.01, num_iter=100000, fit_intercept=True, verbose=False):
+    def __init__(self, lr=0.01, num_iter=10000, fit_intercept=True, verbose=False):
         self.lr = lr
         self.num_iter = num_iter
         self.fit_intercept = fit_intercept
+        self.verbose = verbose
 
     def __add_intercept(self, X):
         intercept = np.ones((X.shape[0], 1))
