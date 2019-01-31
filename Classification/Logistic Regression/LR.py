@@ -72,3 +72,18 @@ def main():
 
 if __name__ == '__main__':
     main()
+    
+    
+# TODO: the initial cluster centers using kmeans++
+'''
+    Selects initial cluster centers for k-mean clustering in a smart way
+    to speed up convergence. see: Arthur, D. and Vassilvitskii, S.
+    "k-means++: the advantages of careful seeding". ACM-SIAM symposium
+    on Discrete algorithms. 2007
+    Version ported from http://www.stanford.edu/~darthur/kMeansppTest.zip,
+    which is the implementation used in the aforementioned paper.
+'''
+
+# TODO add parallel module and give it a try
+
+# TODO minibatch kmeans to be implemented
