@@ -21,19 +21,7 @@ class DBSCAN:
     reference: https://cse.buffalo.edu/~jing/cse601/fa13/materials/clustering_density.pdf
     https://github.com/SushantKafle/DBSCAN/blob/master/cluster.py
     '''
-
-    def __init__(self, eps, minPts, metric = 'euclidean'):
-        self.eps = eps
-        self.minPts = minPts
-        self.metric = metric
-        self.visited = []
-
-    def fit(self, D):
-        '''
-        :param D: input
-        :return:
-        '''
-        '''
+    '''
         pseudo code:
         DBSCAN(D, eps, MinPts)
              C = 0
@@ -59,32 +47,50 @@ class DBSCAN:
 
         regionQuery(P, eps)
             return all points within P's eps-neighborhood (including P)
-        '''
+    '''
 
 
+    def __init__(self, eps, minPts, metric = 'euclidean'):
+        self.eps = eps
+        self.minPts = minPts
+        self.metric = metric
+        self.visited = []
+
+    def fit(self, X):
         '''
-        DBSCAN(D, eps, MinPts)
-             C = 0
-             for each unvisited point P in dataset D
-                mark P as visited
-                NeighborPts = regionQuery(P, eps)
-                if sizeof(NeighborPts) < MinPts
-                    mark P as NOISE
-                else
-                    C = next cluster
-                    expandCluster(P, NeighborPts, C, eps, MinPts)
+        :param D: input
+        :return:
         '''
-        # initial a noise cluster
-        noise = Cluster('Noise', self.dim)
-        counts = D.shape[0]
-        self.visited = [0] * counts
-        for i in range(counts):
-            point = D[i]
-            self.visited[i] = 1
-            NeighborPts = regionQuery(point, self.eps)
-            if len(NeighborPts) < self.MinPts:
-                clusters[i] = -1 # mark as noise
-            else:
-                # TODO finish this one
+        self.X = X
+        self.clusters = []
+        self.visited_samples = []
+        self.neighbors = {}
+        n_samples = np.shape(self.X)[0]
+        # Iterate through samples and expand clusters from them
+        # if they have more neighbors than self.min_samples
+        for sample_i in range(n_samples):
+            if sample_i in self.visited_samples:
+                continue
+            self.neighbors[sample_i] = self.__get_neighbors__(sample_i)
+            if len(self.neighbors[sample_i]) >= self.minPts
+                # If core point => mark as visited
+                self.visited_samples.append(sample_i)
+                # Sample has more neighbors than self.min_samples => expand
+                # cluster from sample
+                new_cluster = self.__expand_cluster__(sample_i, self.neighbors[sample_i])
+                # Add cluster to list of clusters
+                self.clusters.append(new_cluster)
+        # Get the resulting cluster labels
+        cluster_labels = self.__get_cluster_labels__()
+        return cluster_labels
+    
+    def __get_neighbors__(self, sample_i):
+        pass
+    
+    def __expand_cluster__(self, sample_i, neighbors_list):
+        pass
+
+    def __get_cluster_labels__(self):
+        pass
 
 # TODO read about this https://github.com/bwoneill/pypardis the dbscan on pyspark
