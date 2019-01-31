@@ -10,6 +10,9 @@ Contact: ming.li2@columbia.edu
 
 '''
 
+def prob(temp):
+    pass
+
 guess = { 'mu1': [1,1],
           'sig1': [ [1, 0], [0, 1] ],
           'mu2': [4,4],
@@ -28,14 +31,14 @@ In the maximization (M-)step
 # assign every data point to its most likely cluster
 def expectation(dataFrame, parameters):
     for i in range(dataFrame.shape[0]):
-    x = dataFrame['x'][i]
-    y = dataFrame['y'][i]
-    p_cluster1 = prob([x, y], list(parameters['mu1']), list(parameters['sig1']), parameters['lambda'][0] )
-    p_cluster2 = prob([x, y], list(parameters['mu2']), list(parameters['sig2']), parameters['lambda'][1] )
-    if p_cluster1 > p_cluster2:
-        dataFrame['label'][i] = 1
-    else:
-        dataFrame['label'][i] = 2
+        x = dataFrame['x'][i]
+        y = dataFrame['y'][i]
+        p_cluster1 = prob([x, y], list(parameters['mu1']), list(parameters['sig1']), parameters['lambda'][0] )
+        p_cluster2 = prob([x, y], list(parameters['mu2']), list(parameters['sig2']), parameters['lambda'][1] )
+        if p_cluster1 > p_cluster2:
+            dataFrame['label'][i] = 1
+        else:
+            dataFrame['label'][i] = 2
     return dataFrame
 
 def maximization(dataFrame, parameters):
