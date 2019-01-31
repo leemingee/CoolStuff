@@ -47,7 +47,7 @@ def gradient_with_reg(theta, X, y, _lambda = 0.1):
 
 
 def logisticRegression(X, y, theta):
-    result = op.minimize(fun=regCostFunction, x0=theta, args=(X, y),
-                         method='TNC', jac=regGradient)
+    result = op.minimize(fun=loss_function_with_reg, x0=theta, args=(X, y),
+                         method='TNC', jac=gradient_with_reg)
     
     return result.x
