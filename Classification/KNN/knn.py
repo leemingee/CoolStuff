@@ -11,11 +11,12 @@ import numpy as np
 
 def euclidean_distance(x1, x2):
     """ Calculates the l2 distance between two vectors """
+    assert len(x) == len(x2), 'should be the same dim to calculate the distance'
     distance = 0
     # Squared distance between each coordinate
     for i in range(len(x1)):
         distance += pow((x1[i] - x2[i]), 2)
-    return math.sqrt(distance)
+    return np.sqrt(distance)
 
 class KNN:
     
