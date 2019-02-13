@@ -1,9 +1,9 @@
 '''
 Created by Ming Li at 2019-02-05
 
-Feature: 
+Feature:
 
-Description: 
+Description:
 
 Contact: ming.li2@columbia.edu
 '''
@@ -30,9 +30,32 @@ class Solution:
                 stack.append(Interval(l_before, r_before))
         return stack
 
+
+class Solution_2:
+    def generateParenthesis(self, n: 'int') -> 'List[str]':
+        self.n = n
+        self.res = []
+        self.generate()
+        return self.res
+    
+    
+    def generate(S = '', l_count = 0, r_count = 0):
+        if len(S) == 2 * self.n:
+            self.res.append(S)
+            return
+        else:
+            if l_count < self.n:
+                self.generate(S+'(', l_count+1, r_count)
+            if r_count < l_count:
+                self.generate(S+')', l_count, r_count + 1)
+    
+
 if __name__ == '__main__':
-    solu = Solution()
-    intervals = [Interval(1, 3), Interval(2, 6), Interval(8, 10), Interval(15, 18)]
-    print(solu.merge(intervals))
+    #solu = Solution()
+    #intervals = [Interval(1, 3), Interval(2, 6), Interval(8, 10), Interval(15, 18)]
+    #print(solu.merge(intervals))
+    
+    solu2 = Solution_2()
+    solu2.generateParenthesis(2)
 
 
