@@ -114,4 +114,6 @@ def mergeKList(lists):
     import heapq
     minHeap = heapq.heapify([lst[0] for lst in lists]) # minheap of length k
     while minHeap:
+        pass
+    
     
