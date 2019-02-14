@@ -12,6 +12,11 @@ Contact: ming.li2@columbia.edu
 '''
 from numpy import np
 
+# todo using subclass from some existing class, like decisiontree classifier to accomplish for the weak-learner part
+# reference link:
+# https://www.cnblogs.com/bigberg/p/7182741.html
+# https://www.cnblogs.com/feeland/p/4419121.html
+
 class weak_learner:
     
     def __init__(self):
@@ -39,7 +44,11 @@ class Adaboost:
         pass
     
     def predict(self, X_new):
-        pass
-    
+        len_X_new = X_new.shape[0]
+        predicted = [0] * len_X_new
+        for idx in range(len(self.weak_learners_list)):
+            predicted += self.weak_learner_list[idx].predict(X_new) * self.alphas[idx]
+        return (predicted > 0) * 2 - 1
+        
     def score(self, x, y):
         pass
