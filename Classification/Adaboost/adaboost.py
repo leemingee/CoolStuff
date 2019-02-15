@@ -31,11 +31,12 @@ class weak_learner:
 
 class Adaboost:
     
-    def __init__(self, weak_learner_class, epsilon = 0.1):
+    def __init__(self, weak_learner_class, epsilon = 0.1, iters = 100):
         self.weak_learner_class = weak_learner_class
         self.epsilon = epsilon
         self.alphas = []
         self.weak_learners_list = []
+        self.iters = iters
     
     def __calcAlpha__(self, e):
         return 0.5 * np.log( (1-e)/e )
@@ -50,5 +51,6 @@ class Adaboost:
             predicted += self.weak_learner_list[idx].predict(X_new) * self.alphas[idx]
         return (predicted > 0) * 2 - 1
         
-    def score(self, x, y):
-        pass
+    def accuracy(self, x, y):
+        acc = np.sum(self.predict(x) == y) / len(y)
+        return acc
