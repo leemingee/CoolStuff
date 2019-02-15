@@ -109,11 +109,17 @@ def test():
 # test for list, not linked list
 test_lst = [[1,4,5],[1,3,4],[2,6]]
 
-def mergeKList(lists):
-    k = len(lists)
-    import heapq
-    minHeap = heapq.heapify([lst[0] for lst in lists]) # minheap of length k
-    while minHeap:
-        pass
-    
+class Solution(object):
+    def mergeKLists(self, lists):
+        ans = []
+        heap = []
+        for i in xrange(len(lists)):
+            if lists[i]:
+                heapq.heappush(heap, (lists[i].val, lists[i]))
+        while heap:
+            top = heapq.heappop(heap)
+            ans.append(top[0])
+            if top[1].next:
+                heapq.heappush(heap, (top[1].next.val, top[1].next))
+        return ans
     
