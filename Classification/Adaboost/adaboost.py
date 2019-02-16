@@ -17,7 +17,7 @@ from numpy import np
 # https://www.cnblogs.com/bigberg/p/7182741.html
 # https://www.cnblogs.com/feeland/p/4419121.html
 
-class weak_learner:
+class weak_learner_unit:
     
     def __init__(self):
         pass
@@ -37,12 +37,29 @@ class Adaboost:
         self.alphas = []
         self.weak_learners_list = []
         self.iters = iters
+        # self.weights = []
     
+    @staticmethod
     def __calcAlpha__(self, err):
         return 0.5 * np.log((1 - err) / err)
     
     def fit(self, X, y, verbose = False):
-        pass
+        weights = np.ones(len(y)) / len(y) # initial the weights for each data sample
+        accuracy = 0
+        epoch = 0
+        while 1 - accuracy > self.epsilon or epoch <= self.iters:
+            # stop when acc is okay or epoch number is larger than iters
+            epoch += 1
+            weak_learner = weak_learner_unit()
+            alpha = AdaBoost.calcAlpha(weak_learner.score(X, y, weights))
+            self.alphas.append(alpha)
+            self.weak_learners_list.append(weak_learner)
+            # update the weights by w :=
+            weights = weights * np.exp(-alpha * y * self.predict(X))
+            weights = weights / np.sum(weights)
+            accuracy = self.accuracy(X, y)
+            
+            
     
     def predict(self, X_new):
         len_X_new = X_new.shape[0]
@@ -54,3 +71,4 @@ class Adaboost:
     def accuracy(self, x, y):
         acc = np.sum(self.predict(x) == y) / len(y)
         return acc
+
