@@ -17,6 +17,47 @@ from numpy import np
 # https://www.cnblogs.com/bigberg/p/7182741.html
 # https://www.cnblogs.com/feeland/p/4419121.html
 
+class TrivialClassification:
+    def __init__(self):
+        self.sign = None
+        self.thres = 0
+    
+    def __str__(self):
+        return self.sign + " than " + str(self.thres)
+    
+    def fit(self, x, y, w=None):
+        if w is None:
+            w = np.ones(len(y)) / len(y)
+        data = zip(x, y, w)
+        data = sorted(data, key=lambda s: s[0])
+        [x, y, w] = zip(*data)
+        y = np.array(y)
+        w = np.array(w)
+        correct = np.zeros((2, len(y)))  # 0 row for x < v, 1 row for x >= v
+        for i in range(len(y)):
+            w_front = w[:i]
+            w_back = w[i:]
+            correct[0, i] += np.sum(w_front[y[:i] == 1]) + np.sum(w_back[y[i:] == -1])
+            correct[1, i] += np.sum(w_front[y[:i] == -1]) + np.sum(w_back[y[i:] == 1])
+        idx = np.argmax(correct, axis=1)
+        if correct[0, int(idx[0])] > correct[1, int(idx[1])]:
+            self.sign = "smaller"
+            self.thres = x[idx[0]]
+        else:
+            self.sign = "equal to or bigger"
+            self.thres = x[idx[1]]
+    
+    def predict(self, x):
+        if self.sign == "smaller":
+            return (x < self.thres) * 2 - 1
+        else:
+            return (x >= self.thres) * 2 - 1
+    
+    def score(self, x, y, w=None):  # the wrong percent
+        if w is None:
+            w = np.ones(len(y)) / len(y)
+        return 1 - np.sum(w[self.predict(x) == y])
+
 class weak_learner_unit:
     
     def __init__(self):
