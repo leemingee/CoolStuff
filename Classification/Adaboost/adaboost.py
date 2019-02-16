@@ -38,8 +38,8 @@ class Adaboost:
         self.weak_learners_list = []
         self.iters = iters
     
-    def __calcAlpha__(self, e):
-        return 0.5 * np.log( (1-e)/e )
+    def __calcAlpha__(self, err):
+        return 0.5 * np.log((1 - err) / err)
     
     def fit(self, X, y, verbose = False):
         pass
