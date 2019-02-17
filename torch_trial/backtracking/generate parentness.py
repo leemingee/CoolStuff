@@ -5,6 +5,7 @@ Feature:
 
 Description:
 https://www.1point3acres.com/bbs/thread-172641-1-1.html
+https://www.youtube.com/watch?v=OnXWF5819MU
 
 Contact: ming.li2@columbia.edu
 '''
@@ -54,22 +55,57 @@ Contact: ming.li2@columbia.edu
 
 class Solution:
     def generateParenthesis(self, n: 'int') -> 'List[str]':
-        self.ans = []
-        self.dfs(n, n, [])
-        return self.ans
+        ans = []
+        # TODO fix it, didn't work
+        def dfs(l_count, r_count, temp):
+            if l_count == 0 and r_count == 0:
+                print(l_count, r_count)
+                ans.append(temp[:])
+                return
+            if l_count > 0:
+                temp.append("(")
+                dfs(l_count - 1, r_count, temp)
+            if r_count < l_count:
+                temp.append(")")
+                dfs(l_count, r_count - 1, temp)
         
-    def dfs(self, l_count, r_count, temp):
-        if l_count == 0 and r_count == 0:
-            self.ans.append(temp[:])
-            return
-        if l_count > 0:
-            temp.append("(")
-            l_count -= 1
-            self.dfs(l_count, r_count, temp)
-        if r_count < l_count:
-            temp.append(")")
-            r_count -= 1
-            self.dfs(l_count, r_count, temp)
+        dfs(n, n, [])
+        return ans
+        
             
-            
+class Solution2:
+    def generateParenthesis(self, n: 'int') -> 'List[str]':
+        res = []
+        
+        def generate(string='', l_count=0, r_count=0):
+            if len(string) == n * 2:
+                res.append(string)
+                return
+            else:
+                if l_count < n:
+                    generate(string + "(", l_count + 1, r_count)
+                if r_count < l_count:
+                    generate(string + ")", l_count, r_count + 1)
+        
+        generate()
+        return res
+
+class Solution3:
+    
+    def generateParentesis_n_m(self, n : 'int', m : 'int') -> 'List[str]':
+        if n > m:
+            return []
+        if n == 0:
+            return [")" * m]
+        # using recursion of f(n, m) = [f(n, m-1) + ")"] + ["("+ f(n-1, m)]
+        else:
+            res = []
+            for pair in self.generateParentesis_n_m(n-1, m):
+                res.append("(" + pair)
+            for pair in self.generateParentesis_n_m(n, m-1):
+                res.append(")" + pair)
+        return res
+    
 print(Solution().generateParenthesis(3))
+#print(Solution2().generateParenthesis(3))
+# print(Solution3().generateParentesis_n_m(3, 3))
