@@ -19,6 +19,7 @@ class TreeNode:
 
 class Solution:
     # O(1) space
+    # TODO read this long solution
     def findMode(self, root):
         if root is None: return []
         

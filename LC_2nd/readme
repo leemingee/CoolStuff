@@ -4,7 +4,7 @@ Good luck!
 
 02/19
 Directory working on: Search
-Problems list:   
+Problems list: 11 counts
 - 46 Permutations
 - 47 Permutations II
 - 1 Two Sum
@@ -18,10 +18,13 @@ Problems list:
 - 198 House Robber
 
 02/20
-Directory working on: Tree
+Directory working on: Tree, Search
 Problems list: 
 - 94 Binary Tree Inorder Traversal [M]
 - 501 Find Mode in Binary Search Tree
+- 20 Valid Parentheses
+- 78 Subsets [M]
+- 238 Product of Array Except Self [M]
 
 
 --
