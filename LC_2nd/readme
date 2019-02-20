@@ -18,14 +18,15 @@ Problems list: 11 counts
 - 198 House Robber
 
 02/20
-Directory working on: Tree, Search
+Directory working on: Tree, Search, SQL
 Problems list: 
 - 94 Binary Tree Inorder Traversal [M]
 - 501 Find Mode in Binary Search Tree
 - 20 Valid Parentheses
 - 78 Subsets [M]
 - 238 Product of Array Except Self [M]
-
+- 23 merge k sorted list [H]
+- 176 Second Highest Salary
 
 --
 template
