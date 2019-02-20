@@ -10,11 +10,11 @@ Contact: ming.li2@columbia.edu
 
 
 # Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
+class TreeNode:
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
 
 class Solution:
     def isValidBST2(self, root: 'TreeNode') -> 'bool':
@@ -31,29 +31,20 @@ class Solution:
             inorder = root.val
             root = root.right
         return True
-    
-    def isValidBST(self, root):
-        """
-        :type root: TreeNode
-        :rtype: bool
-        """
-        if not root:
+
+    def isValidBST(self, root: 'TreeNode') -> 'bool':
+        # solution using the recursion
+        return self.validhelper(root, float('-inf'), float('inf'))
+
+    def validhelper(self, root, min_val, max_val):
+        if root is None:
             return True
-        
-        def isBSTHelper(node, lower_limit, upper_limit):
-            if lower_limit is not None and node.val <= lower_limit:
-                return False
-            if upper_limit is not None and upper_limit <= node.val:
-                return False
-            
-            left = isBSTHelper(node.left, lower_limit, node.val) if node.left else True
-            if left:
-                right = isBSTHelper(node.right, node.val, upper_limit) if node.right else True
-                return right
-            else:
-                return False
-        
-        return isBSTHelper(root, None, None)
+        if root.val <= min_val or root.val >= max_val:
+            return False
+        else:
+            result = self.validhelper(root.left, min_val, root.val) and self.validhelper(root.right, root.val,
+                                                                                         max_val)
+            return result
 
 
 if __name__ == '__main__':
