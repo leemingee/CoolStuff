@@ -26,7 +26,20 @@ Problems list:
 - 78 Subsets [M]
 - 238 Product of Array Except Self [M]
 - 23 merge k sorted list [H]
-- 176 Second Highest Salary
+- 176 Second Highest Salary [M]
+
+02/21
+traveling
+
+02/22
+- 797 All Paths From Source to Target [M]
+- 359 Logger Rate Limiter
+- 921 Minimum Add to Make Parentheses Valid [M]
+- 756 Pyramid Transition Matrix [M]
+- 42 Trapping Rain Water [H]
+- 3 Longest Substring Without Repeating Characters
+- 159 Longest Substring with At Most Two Distinct Characters
+
 
 --
 template
