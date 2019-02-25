@@ -30,8 +30,12 @@ Problems list:
 
 02/21
 traveling
+Nothign
 
-02/22
+02/22  
+traveling   
+Directory working on:
+Problems list:
 - 797 All Paths From Source to Target [M]
 - 359 Logger Rate Limiter
 - 921 Minimum Add to Make Parentheses Valid [M]
@@ -41,7 +45,10 @@ traveling
 - 159 Longest Substring with At Most Two Distinct Characters
 - 929 Unique Email Addresses
 
-02/23
+02/23  
+traveling   
+Directory working on: Search
+Problems list:
 - 409 Longest Palindrome
 - 266 Palindrome Permutation
 - 242 Valid Anagram
@@ -49,9 +56,22 @@ traveling
 - 267 Palindrome Permutation II [M]
 - 5 Longest Palindromic Substring [M]
 
+Directory working on: Trees  
+Problems list:  
+- 110 Balanced Binary Tree
+
+02/24   
+traveling   
+Directory working on: Tree_fundamental
+Problems list:  
+- 104 Maximum Depth of Binary Tree
+- 111 Minimum Depth of Binary Tree
+ -559 Maximum Depth of N-ary Tree
+- 257 Binary Tree Paths
+- 113 Path Sum II
 
 
---
+
 template
 
 
