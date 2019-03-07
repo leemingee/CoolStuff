@@ -12,21 +12,40 @@
 # param_1 = obj.get(key)
 # obj.put(key,value)
 
-
-class LRUCache_1:
+from collections import OrderedDict
+class LRUCache_1(OrderedDict):
     '''
-    we need to think about this question using our understanding of the data structure.
-    so for this problem, we have few targets to be achieved.
+        we need to think about this question using our understanding of the data structure.
+        so for this problem, we have few targets to be achieved.
 
+        We're asked to implement the structure which provides the following operations in \mathcal{O}(1)O(1) time :
+
+        - Get the key / Check if the key exists
+        - Put the key
+        - Delete the first added key
+
+        The first two operations in O(1) time are provided by the standard hashmap,
+        and the last one - by linked list.
+
+        There is a structure called ordered dictionary,
+        it combines behind both hashmap and linked list.
+        In Python this structure is called OrderedDict and in Java LinkedHashMap.
     '''
     def __init__(self, capacity):
-        pass
+        self.capacity = capacity
 
     def get(self, key):
-        pass
+        if key not in self:
+            return -1
+        self.move_to_end(key)
+        return self[key]
 
     def put(self, key, value):
-        pass
+        if key in self:
+            self.move_to_end(key)
+        self[key] = value
+        if len(self) > self.capacity:
+            self.popitem(last=False)
 
 class LRUCache_2:
 
